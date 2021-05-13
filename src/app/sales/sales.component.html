@@ -1,0 +1,28 @@
+<br>
+<br>
+<br>
+<table class="table table-borderless">
+  <thead class="thead-dark">
+    <th>SalesMainID </th>
+    <th>SalesDate</th>
+    <th>TotalAmount</th>
+    <th><a  class="btn btn-outline-success " routerLink="/SalesMain"><i class="fa fa-plus-square"></i> CreateNew Sales </a> </th>
+    
+  </thead>
+  <tbody>
+    
+    <tr *ngFor="let Sales of service.SalesMainsList;let i=index;">
+      <td (click)="openForEdit(Sales.SalesMainID)">{{Sales.SalesMainID}}</td>
+      <td>{{Sales.SalesDate}}</td>
+      <td>{{Sales.TotalAmount}}</td>
+      
+      <td>
+        <button class="btn btn-info" (click)="openForEdit(Sales.SalesMainID)"><i class="fas fa-edit"></i></button>
+        <button class="btn btn-danger ml-1" (click)="DeleteSalesMainItem(Sales.SalesMainID)"><i class="fas fa-trash"></i></button>
+      
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+

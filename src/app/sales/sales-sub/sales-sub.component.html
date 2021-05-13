@@ -1,0 +1,53 @@
+<h4 class="display-4">Sales Items</h4>
+<hr>
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+<input type="hidden" name="ItemName" #ItemName="ngModel" [(ngModel)]="formData.ItemName" class="form-control">
+<input type="hidden" name="SalesSubID" #SalesSubID="ngModel" [(ngModel)]="formData.SalesSubID" class="form-control">
+<input type="hidden" name="SalesMainID" #SalesMainID="ngModel" [(ngModel)]="formData.SalesMainID" class="form-control">
+
+
+<div class="form-group">
+  <label>Sales Item</label>
+  <select  name="ItemID" #ItemID="ngModel" [(ngModel)]="formData.ItemID" class="form-control" (change)="updatePrice($event.target)" [class.is-invalid]="!isValid && formData.ItemID==0">
+    <option disabled value="0">-select-</option>
+    <option *ngFor="let item of itemList" [value]="item.ItemID">{{item.ItemName}}</option>
+  </select>
+</div>
+<div class="form-row">
+<div class="form-group col-md-6">
+  <label>Price</label>
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <div class="input-group-text">$</div>
+      
+      <input class="form-control" readonly name="Price" #Price="ngModel" [(ngModel)]="formData.Price"  >
+
+    </div>
+  </div>
+</div>
+
+<div class="form-group col-md-6">
+  <label>Quantity</label>
+  
+      
+      <input class="form-control"  name="ItemQuantity" #ItemQuantity="ngModel" [(ngModel)]="formData.ItemQuantity" (keyup)="updateTotal()" [class.is-invalid]="!isValid && formData.ItemID==0" >
+
+  
+</div>
+</div>
+
+<div class="form-group ">
+  <label>Total</label>
+      
+      <input class="form-control"  name="TotalPrice" #TotalPrice="ngModel" [(ngModel)]="formData.TotalPrice" readonly >
+</div>
+<div class="form-group">
+  <button type="submit" class="btn btn-success"><i class="fa fa-database"></i> Submit</button>
+  <button type="button" class="btn btn-outline-danger ml-1" [mat-dialog-close]><i class="fa fa-close"></i> Close</button>
+
+ 
+</div>
+
+</form>
+<br>
+
